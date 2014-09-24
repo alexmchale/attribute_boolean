@@ -1,6 +1,6 @@
 module AttributeBoolean
 
-  VERSION = "1.0.0"
+  VERSION = "1.0.1"
 
   module ClassMethods
     def attr_boolean(*args)
@@ -39,6 +39,8 @@ module AttributeBoolean
             !! value
           end
         end
+
+        alias_method "#{ name }", "#{ name }?"
 
         define_method("#{ name }=") do |value|
           is_true =
