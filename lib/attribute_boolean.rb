@@ -20,8 +20,7 @@ module AttributeBoolean
           false
         end
 
-      false_values =
-        [ false, 0, '0', 'f', 'F', 'false', 'FALSE', 'off', 'OFF', 'n', 'N', 'no', 'NO' ]
+      false_values = nil
 
       args.each do |name|
         ivar = "@#{ name }"
@@ -40,8 +39,10 @@ module AttributeBoolean
           is_true =
             if value == nil
               default_value
-            else
+            elsif false_values
               ! false_values.include?(value.to_s)
+            else
+              ! AttributeBoolean.false_values.include?(value.to_s)
             end
 
           instance_variable_set(ivar, is_true)
@@ -52,6 +53,18 @@ module AttributeBoolean
 
   def self.included(base)
     base.send(:extend, ClassMethods)
+  end
+
+  def self.reset_false_values!
+    @false_values = [ false, 0, '0', 'f', 'F', 'false', 'FALSE', 'off', 'OFF', 'n', 'N', 'no', 'NO' ]
+  end
+
+  def self.false_values
+    @false_values or reset_false_values!
+  end
+
+  def self.false_values=(false_values)
+    @false_values = false_values
   end
 
 end
