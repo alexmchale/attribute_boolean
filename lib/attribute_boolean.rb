@@ -1,6 +1,6 @@
-require "attribute_boolean/version"
-
 module AttributeBoolean
+
+  VERSION = "0.0.1"
 
   module ClassMethods
     def attr_boolean(*args)
@@ -70,6 +70,17 @@ module AttributeBoolean
 
   def self.false_values=(false_values)
     @false_values = false_values
+  end
+
+  # Mix AttributeBoolean into ActiveRecord::Base if Rails is loaded.
+  if defined? Rails::Railtie
+    class Railtie < Rails::Railtie
+      initializer "attribute_boolean.initialize" do
+        ActiveSupport.on_load(:active_record) do
+          ActiveRecord::Base.send(:include, AttributeBoolean)
+        end
+      end
+    end
   end
 
 end
