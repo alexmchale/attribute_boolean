@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = AttributeBoolean::VERSION
   spec.authors       = ["Alex McHale"]
   spec.email         = ["alex@anticlever.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{A gem for adding attr_boolean to objects}
+  spec.description   = %q{A gem for adding attr_boolean to objects, assigning by various 'falsey' values}
+  spec.homepage      = "https://github.com/alexmchale/attribute_boolean"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
