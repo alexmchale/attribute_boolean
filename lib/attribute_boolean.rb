@@ -20,7 +20,12 @@ module AttributeBoolean
           false
         end
 
-      false_values = nil
+      false_values =
+        if options.has_key?(:false_values)
+          options[:false_values]
+        elsif options.has_key?("false_values")
+          options["false_values"]
+        end
 
       args.each do |name|
         ivar = "@#{ name }"
