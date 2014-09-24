@@ -56,20 +56,22 @@ module AttributeBoolean
     end
   end
 
-  def self.included(base)
-    base.send(:extend, ClassMethods)
-  end
+  class << self
+    def included(base)
+      base.send(:extend, ClassMethods)
+    end
 
-  def self.reset_false_values!
-    @false_values = [ false, 0, '0', 'f', 'F', 'false', 'FALSE', 'off', 'OFF', 'n', 'N', 'no', 'NO' ]
-  end
+    def reset_false_values!
+      @false_values = [ false, 0, '0', 'f', 'F', 'false', 'FALSE', 'off', 'OFF', 'n', 'N', 'no', 'NO' ]
+    end
 
-  def self.false_values
-    @false_values or reset_false_values!
-  end
+    def false_values
+      @false_values or reset_false_values!
+    end
 
-  def self.false_values=(false_values)
-    @false_values = false_values
+    def false_values=(false_values)
+      @false_values = false_values
+    end
   end
 
   # Mix AttributeBoolean into ActiveRecord::Base if Rails is loaded.
