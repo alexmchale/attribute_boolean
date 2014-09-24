@@ -1,6 +1,6 @@
 module AttributeBoolean
 
-  VERSION = "0.0.1"
+  VERSION = "1.0.0"
 
   module ClassMethods
     def attr_boolean(*args)
